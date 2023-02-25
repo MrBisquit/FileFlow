@@ -4,6 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>FileFlow</Title>
+    <Version>1.0.0</Version>
+    <Description>FileFlow, easily manage your files.</Description>
+    <PackageProjectUrl>https://github.com/MrBisquit/FileFlow</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MrBisquit/FileFlow</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
