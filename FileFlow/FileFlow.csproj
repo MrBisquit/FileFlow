@@ -9,6 +9,7 @@
     <Description>FileFlow, easily manage your files.</Description>
     <PackageProjectUrl>https://github.com/MrBisquit/FileFlow</PackageProjectUrl>
     <RepositoryUrl>https://github.com/MrBisquit/FileFlow</RepositoryUrl>
+    <PackageReleaseNotes>Check them out here -&gt; https://github.com/MrBisquit/FileFlow</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
