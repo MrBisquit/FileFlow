@@ -2,13 +2,43 @@
 {
     public class File
     {
+        /// <summary>
+        /// Gets a file as a FileInfo class which can be used later
+        /// </summary>
+        /// <param name="path">The path of the file</param>
+        /// <returns>A FileInfo class of the file path provided</returns>
         public FileInfo GetFile(string path)
         {
             return new FileInfo(path);
         }
+        /// <summary>
+        /// Removes a file
+        /// </summary>
+        /// <param name="file">A FileInfo class (can be generated using GetFile)</param>
+        public void RemoveFile(FileInfo file)
+        {
+            file.Delete();
+        }
+        public FileInfo MoveFile(FileInfo file, string PathToMoveTo)
+        {
+            file.MoveTo(PathToMoveTo);
+            return file;
+        }
     }
     public class Directory
     {
+        /// <summary>
+        /// Gets a directory as a DirectoryInfo class which can be used later
+        /// </summary>
+        /// <param name="path">The path of the directory</param>
+        /// <returns>A DirectoryInfo class of the directory path provided</returns>
+        public DirectoryInfo GetDirectory(string path)
+        {
+            return new DirectoryInfo(path);
+        }
+        /// <summary>
+        /// Makes the FileSystemWatcher class a little more easier
+        /// </summary>
         public class FileSystemListener
         {
             FileSystemWatcher watcher;
@@ -33,9 +63,27 @@
             {
                 watcher.Deleted += action;
             }
-            public void Destroy()
+            public void RemoveFileCreatedListener(FileSystemEventHandler action)
+            {
+                watcher.Created -= action;
+            }
+            public void RemoveFileChangedListener(FileSystemEventHandler action)
+            {
+                watcher.Changed -= action;
+            }
+            public void RemoveFileRenamedListener(RenamedEventHandler action)
+            {
+                watcher.Renamed -= action;
+            }
+            public void RemoveFileDeletedListener(FileSystemEventHandler action)
+            {
+                watcher.Deleted -= action;
+            }
+            public void Dispose()
             {
                 watcher.Dispose();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
         }
     }

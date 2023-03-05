@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo(Console.ReadLine()));
+            var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo("C:/Users/William/Desktop"));
             Console.Clear();
                 Console.WriteLine("| Type    | File name");
             fsl.AddFileCreatedListener((sender, e) =>
@@ -22,6 +22,8 @@
             fsl.AddFileRenamedListener((sender, e) => {
                 Console.WriteLine("| Renamed | " + e.Name);
             });
+            Console.ReadLine();
+            fsl.Dispose();
             Console.ReadLine();
         }
     }
