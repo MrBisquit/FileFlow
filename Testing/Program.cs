@@ -4,12 +4,16 @@
     {
         static void Main(string[] args)
         {
-            var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo(Console.ReadLine()));
+            //var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo(Console.ReadLine()));
+            var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo(Environment.CurrentDirectory));
             Console.Clear();
+            Console.WriteLine(Environment.CurrentDirectory);
                 Console.WriteLine("| Type    | File name");
             fsl.AddFileCreatedListener((sender, e) =>
             {
                 Console.WriteLine("| Created | " + e.Name);
+                FileFlow.File file = new FileFlow.File();
+                file.RemoveFile(new FileInfo(e.Name));
             });
             fsl.AddFileChangedListener((sender, e) =>
             {

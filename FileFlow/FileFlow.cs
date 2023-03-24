@@ -24,6 +24,45 @@
             file.MoveTo(PathToMoveTo);
             return file;
         }
+
+        public List<FileInfo> AddToFileList(FileInfo toadd, List<FileInfo> filelist)
+        {
+            filelist.Add(toadd);
+
+            return filelist;
+        }
+
+        public List<FileInfo> AddToFileList(FileInfo[] toadd, List<FileInfo> filelist)
+        {
+            for (int i = 0; i < toadd.Length; i++)
+            {
+                filelist.Add(toadd[i]);
+            }
+
+            return filelist;
+        }
+
+        public List<FileInfo> RemoveFromFileList(FileInfo toremove, List<FileInfo> filelist)
+        {
+            filelist.Remove(toremove);
+
+            return filelist;
+        }
+
+        public List<FileInfo> RemoveFromFileList(FileInfo[] toremove, List<FileInfo> filelist)
+        {
+            for (int i = 0; i < toremove.Length; i++)
+            {
+                filelist.Remove(toremove[i]);
+            }
+
+            return filelist;
+        }
+
+        public void DeleteFiles(List<FileInfo> files)
+        {
+            files.ForEach(file => file.Delete());
+        }
     }
     public class Directory
     {
