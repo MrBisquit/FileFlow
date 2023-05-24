@@ -1,4 +1,6 @@
-﻿namespace FileFlow
+﻿using FileFlow.Types;
+
+namespace FileFlow
 {
     public class File
     {
@@ -169,6 +171,17 @@
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
+        }
+        /// <summary>
+        /// Searches the directory provided with the quer(y/ies) provided, (subdirectory available but can take a long time and power)
+        /// </summary>
+        /// <param name="query">Typeof Queries.SearchQuery, see documentation for Queries.SearchQuery for more information</param>
+        /// <returns>Returns typeof FileSearchResult, see documentation for FileSearchResult for more information</returns>
+        public FileSearchResult QueryDirectory(Queries.SearchQuery query)
+        {
+            FileSearchResult fileSearchResult = new FileSearchResult();
+
+            return fileSearchResult;
         }
     }
 }

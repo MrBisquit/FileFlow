@@ -14,6 +14,8 @@
             {
                 Console.WriteLine("| Created | " + e.Name);
                 FileFlow.File file = new FileFlow.File();
+                //file.RemoveFile(new FileInfo(e.Name));
+                files = file.AddToFileList(new FileInfo(e.Name), files);
             });
             fsl.AddFileChangedListener((sender, e) =>
             {
