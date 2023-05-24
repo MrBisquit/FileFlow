@@ -5,6 +5,7 @@
 
 
 <div id="SearchQuery"></div>
+
 ## SearchQuery
 
 - Multiple queries
