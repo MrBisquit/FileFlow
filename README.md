@@ -1,6 +1,6 @@
 # FileFlow
 FileFlow, easily manage files and directories
 
-<a href="docs">
+<a href="Docs">
     Visit documentation
 </a>
