@@ -4,15 +4,14 @@
 
 
 
-<div id="SearchQuery">
-    ## SearchQuery
+<div id="SearchQuery"></div>
+## SearchQuery
 
-    - Multiple queries
-        - Directory (DirectoryInfo)
-        - Queries (List<string>)
-        - Sub directories (bool)
-    - Single queries
-        - Directory (DirectoryInfo)
-        - Query (string)
-        - Sub directories (bool)
-</div>
+- Multiple queries
+    - Directory (DirectoryInfo)
+    - Queries (List<string>)
+    - Sub directories (bool)
+- Single queries
+    - Directory (DirectoryInfo)
+    - Query (string)
+    - Sub directories (bool)
