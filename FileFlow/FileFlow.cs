@@ -181,6 +181,8 @@ namespace FileFlow
         {
             FileSearchResult fileSearchResult = new FileSearchResult();
 
+            if (query.subdirectories) throw new NotImplementedException("Cannot yet query subdirectories.");
+
             return fileSearchResult;
         }
     }

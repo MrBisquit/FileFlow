@@ -10,9 +10,9 @@ namespace FileFlow.Types
     {
         public class SearchQuery
         {
-            DirectoryInfo directory { get; }
-            List<string> queries { get; }
-            bool subdirectories { get; }
+            public DirectoryInfo directory { get; }
+            public List<string> queries { get; }
+            public bool subdirectories { get; }
             public SearchQuery(DirectoryInfo directory, List<string> queries, bool subdirectories)
             {
                 this.directory = directory;
