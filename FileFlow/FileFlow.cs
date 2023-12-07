@@ -177,13 +177,27 @@ namespace FileFlow
         /// </summary>
         /// <param name="query">Typeof Queries.SearchQuery, see documentation for Queries.SearchQuery for more information</param>
         /// <returns>Returns typeof FileSearchResult, see documentation for FileSearchResult for more information</returns>
+        [Obsolete("Not in use (Does not work)")]
         public FileSearchResult QueryDirectory(Queries.SearchQuery query)
         {
             FileSearchResult fileSearchResult = new FileSearchResult();
 
-            if (query.subdirectories) throw new NotImplementedException("Cannot yet query subdirectories.");
+            //if (query.subdirectories) throw new NotImplementedException("Cannot yet query subdirectories.");
+
+            //System.IO.Directory.GetFiles(query.directory.FullName);
 
             return fileSearchResult;
+        }
+        /// <summary>
+        /// Is literally System.IO.Directory.GetFiles.
+        /// </summary>
+        /// <param name="searchPath"></param>
+        /// <param name="searchpattern"></param>
+        /// <param name="searchoption"></param>
+        /// <returns>An array of files.</returns>
+        public string[] SearchDirectory(string searchPath, string searchpattern, SearchOption searchoption)
+        {
+            return System.IO.Directory.GetFiles(searchPath, searchpattern, searchoption);
         }
     }
 }
