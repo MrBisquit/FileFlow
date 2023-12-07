@@ -1,9 +1,23 @@
-﻿namespace Testing
+﻿using FileFlow;
+
+namespace Testing
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Loading cache...");
+            /*if(!System.IO.Directory.Exists(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache")))
+            {
+                System.IO.Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache"));
+            }
+            Caching cache = new Caching(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache"));
+            cache.AddFile(new FileInfo(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache") + "\\Testing.exe"));*/
+
+            //Caching cache = new Caching(Environment.CurrentDirectory);
+            //cache.AddFile(new FileInfo(Environment.CurrentDirectory + "\\Testing.exe"));
+
+
             //var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo(Console.ReadLine()));
             List<FileInfo> files = new List<FileInfo>();
             var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo(Environment.CurrentDirectory));

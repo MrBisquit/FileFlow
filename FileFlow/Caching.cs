@@ -10,21 +10,28 @@ namespace FileFlow
 {
     public class Caching
     {
-        private string? _ConfigLocation = null;
+        private string? _CacheLocation = null;
         private CacheConfig? _Config = null;
 
-        public string ConfigLocation { get { return _ConfigLocation == null ? "" : _ConfigLocation; } }
+        /// <summary>
+        /// The directory which the config file should be in.
+        /// </summary>
+        public string CacheLocation { get { return _CacheLocation == null ? "" : _CacheLocation; } }
         public CacheConfig? Config { get { return _Config; } }
-        public Caching(string ConfigLocation)
+        public Caching(string CacheLocation)
         {
-            _ConfigLocation = ConfigLocation;
+            if(!System.IO.Directory.Exists(CacheLocation))
+            {
+                throw new Exception("Invalid CacheLocation field");
+            }
+            _CacheLocation = CacheLocation;
 
             Initialise();
         }
 
         private void Initialise()
         {
-            if(System.IO.File.Exists(_ConfigLocation))
+            if(System.IO.File.Exists(Path.Combine(_CacheLocation, ".config")))
             {
                 LoadConfig();
             } else
@@ -36,14 +43,40 @@ namespace FileFlow
 
         private void SaveConfig()
         {
-            if (_ConfigLocation == null) return;
-            System.IO.File.WriteAllText(_ConfigLocation, JsonSerializer.Serialize(_Config));
+            if (_CacheLocation == null) return;
+
+            if(System.IO.Directory.Exists(_CacheLocation))
+            {
+                System.IO.Directory.CreateDirectory(_CacheLocation);
+            }
+
+            System.IO.File.WriteAllText(_CacheLocation, JsonSerializer.Serialize(_CacheLocation + "\\.config"));
         }
 
         private void LoadConfig()
         {
-            if (_ConfigLocation == null) return;
-            _Config = JsonSerializer.Deserialize<CacheConfig>(System.IO.File.ReadAllText(_ConfigLocation));
+            if (_CacheLocation == null) return;
+            _Config = JsonSerializer.Deserialize<CacheConfig>(System.IO.File.ReadAllText(_CacheLocation + "\\.config"));
+        }
+
+        public void AddFile(FileInfo file)
+        {
+            if(_Config == null)
+            {
+                throw new Exception("Config not initialised");
+            }
+
+            CacheFile f = new CacheFile();
+            f.FileName = Guid.NewGuid().ToString();
+            f.OriginalFileName = file.FullName;
+            f.SavedAt = DateTime.Now;
+
+            _Config.Files.Add(f);
+
+            if(!System.IO.Directory.Exists(Path.Combine(CacheLocation, "Files"))) { System.IO.Directory.CreateDirectory(Path.Combine(CacheLocation, "Files")); }
+            System.IO.File.Copy(file.FullName, Path.Combine(Path.Combine(CacheLocation, "Files"), f.FileName));
+
+            SaveConfig();
         }
     }
 }
