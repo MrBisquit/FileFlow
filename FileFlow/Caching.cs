@@ -50,7 +50,16 @@ namespace FileFlow
                 System.IO.Directory.CreateDirectory(_CacheLocation);
             }
 
-            System.IO.File.WriteAllText(_CacheLocation, JsonSerializer.Serialize(_CacheLocation + "\\.config"));
+            if(System.IO.File.Exists(Path.Combine(_CacheLocation + "\\.config")))
+            {
+                FileInfo f = new FileInfo(Path.Combine(_CacheLocation + "\\.config"));
+                f.Attributes = FileAttributes.Normal;
+            }
+
+            System.IO.File.WriteAllText(Path.Combine(_CacheLocation + "\\.config"), JsonSerializer.Serialize(_Config));
+
+            FileInfo file = new FileInfo(Path.Combine(_CacheLocation + "\\.config"));
+            file.Attributes = FileAttributes.Hidden;
         }
 
         private void LoadConfig()
@@ -75,6 +84,12 @@ namespace FileFlow
 
             if(!System.IO.Directory.Exists(Path.Combine(CacheLocation, "Files"))) { System.IO.Directory.CreateDirectory(Path.Combine(CacheLocation, "Files")); }
             System.IO.File.Copy(file.FullName, Path.Combine(Path.Combine(CacheLocation, "Files"), f.FileName));
+
+            FileInfo fileInfo = new FileInfo(Path.Combine(CacheLocation, "Files", f.FileName));
+            fileInfo.Attributes = FileAttributes.Hidden;
+
+            DirectoryInfo directoryInfo = new DirectoryInfo(Path.Combine(CacheLocation, "Files"));
+            directoryInfo.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
             SaveConfig();
         }

@@ -9,7 +9,7 @@ namespace FileFlow
         /// </summary>
         /// <param name="path">The path of the file</param>
         /// <returns>A FileInfo class of the file path provided</returns>
-        public FileInfo GetFile(string path)
+        public static FileInfo GetFile(string path)
         {
             return new FileInfo(path);
         }
@@ -17,7 +17,7 @@ namespace FileFlow
         /// Removes a file
         /// </summary>
         /// <param name="file">A FileInfo class (can be generated using GetFile)</param>
-        public void RemoveFile(FileInfo file)
+        public static void RemoveFile(FileInfo file)
         {
             file.Delete();
         }
@@ -28,7 +28,7 @@ namespace FileFlow
         /// <param name="file">The source file</param>
         /// <param name="PathToMoveTo">The destination of where it should be moved it</param>
         /// <returns>The source file</returns>
-        public FileInfo MoveFile(FileInfo file, string PathToMoveTo)
+        public static FileInfo MoveFile(FileInfo file, string PathToMoveTo)
         {
             file.MoveTo(PathToMoveTo);
             return file;
@@ -40,7 +40,7 @@ namespace FileFlow
         /// <param name="toadd">The file to add to the list of files</param>
         /// <param name="filelist">The list of files (can be an empty list)</param>
         /// <returns>The list, now containing the file</returns>
-        public List<FileInfo> AddToFileList(FileInfo toadd, List<FileInfo> filelist)
+        public static List<FileInfo> AddToFileList(FileInfo toadd, List<FileInfo> filelist)
         {
             filelist.Add(toadd);
 
@@ -53,7 +53,7 @@ namespace FileFlow
         /// <param name="toadd">The files to add to the list of files</param>
         /// <param name="filelist">The list of files (can be an empty list)</param>
         /// <returns>The list, new containing the files</returns>
-        public List<FileInfo> AddToFileList(FileInfo[] toadd, List<FileInfo> filelist)
+        public static List<FileInfo> AddToFileList(FileInfo[] toadd, List<FileInfo> filelist)
         {
             for (int i = 0; i < toadd.Length; i++)
             {
@@ -69,7 +69,7 @@ namespace FileFlow
         /// <param name="toremove">The file to remove from the list of files</param>
         /// <param name="filelist">The list of files (can be empty, but there's no point)</param>
         /// <returns>The list, now not containing the file</returns>
-        public List<FileInfo> RemoveFromFileList(FileInfo toremove, List<FileInfo> filelist)
+        public static List<FileInfo> RemoveFromFileList(FileInfo toremove, List<FileInfo> filelist)
         {
             filelist.Remove(toremove);
 
@@ -82,7 +82,7 @@ namespace FileFlow
         /// <param name="toremove">The files to remove from the list of files</param>
         /// <param name="filelist">The list of files (can be empty, but there's no point)</param>
         /// <returns>The list, now not containing the files</returns>
-        public List<FileInfo> RemoveFromFileList(FileInfo[] toremove, List<FileInfo> filelist)
+        public static List<FileInfo> RemoveFromFileList(FileInfo[] toremove, List<FileInfo> filelist)
         {
             for (int i = 0; i < toremove.Length; i++)
             {
@@ -96,7 +96,7 @@ namespace FileFlow
         /// Mass deletes all of the files in the list
         /// </summary>
         /// <param name="files">The list of files to be deleted</param>
-        public void DeleteFiles(List<FileInfo> files)
+        public static void DeleteFiles(List<FileInfo> files)
         {
             files.ForEach(file => file.Delete());
         }
@@ -106,7 +106,7 @@ namespace FileFlow
         /// </summary>
         /// <param name="files">The list of files to be moved</param>
         /// <param name="destination">The directory where they will be placed</param>
-        public void MoveFiles(List<FileInfo> files, string destination)
+        public static void MoveFiles(List<FileInfo> files, string destination)
         {
             files.ForEach(file => file.MoveTo(destination));
         }
@@ -118,7 +118,7 @@ namespace FileFlow
         /// </summary>
         /// <param name="path">The path of the directory</param>
         /// <returns>A DirectoryInfo class of the directory path provided</returns>
-        public DirectoryInfo GetDirectory(string path)
+        public static DirectoryInfo GetDirectory(string path)
         {
             return new DirectoryInfo(path);
         }
@@ -180,6 +180,7 @@ namespace FileFlow
         [Obsolete("Not in use (Does not work)")]
         public FileSearchResult QueryDirectory(Queries.SearchQuery query)
         {
+            throw new NotImplementedException("Doesn't work properly, wait until next update.");
             FileSearchResult fileSearchResult = new FileSearchResult();
 
             //if (query.subdirectories) throw new NotImplementedException("Cannot yet query subdirectories.");
@@ -195,7 +196,7 @@ namespace FileFlow
         /// <param name="searchpattern"></param>
         /// <param name="searchoption"></param>
         /// <returns>An array of files.</returns>
-        public string[] SearchDirectory(string searchPath, string searchpattern, SearchOption searchoption)
+        public static string[] SearchDirectory(string searchPath, string searchpattern, SearchOption searchoption)
         {
             return System.IO.Directory.GetFiles(searchPath, searchpattern, searchoption);
         }

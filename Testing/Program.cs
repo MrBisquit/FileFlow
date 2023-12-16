@@ -7,16 +7,29 @@ namespace Testing
         static void Main(string[] args)
         {
             Console.WriteLine("Loading cache...");
-            /*if(!System.IO.Directory.Exists(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache")))
+            if(!System.IO.Directory.Exists(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache")))
             {
                 System.IO.Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache"));
             }
             Caching cache = new Caching(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache"));
-            cache.AddFile(new FileInfo(Path.Combine(Environment.CurrentDirectory, "FileFlow", "Cache") + "\\Testing.exe"));*/
+            cache.AddFile(new FileInfo(Path.Combine(Environment.CurrentDirectory, "Testing.exe")));
 
-            //Caching cache = new Caching(Environment.CurrentDirectory);
-            //cache.AddFile(new FileInfo(Environment.CurrentDirectory + "\\Testing.exe"));
+            /*string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string cacheFolderPath = Path.Combine(appDataFolder, "FileFlowTesting", "FileFlow", "Cache");
 
+            if(System.IO.Directory.Exists(cacheFolderPath))
+            {
+                System.IO.Directory.CreateDirectory(cacheFolderPath);
+            }*/
+
+            /*Caching cache = new Caching(cacheFolderPath);
+            try
+            {
+                cache.AddFile(new FileInfo(Environment.CurrentDirectory + "\\Testing.exe"));
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }*/
 
             //var fsl = new FileFlow.Directory.FileSystemListener(new DirectoryInfo(Console.ReadLine()));
             List<FileInfo> files = new List<FileInfo>();

@@ -10,6 +10,7 @@ namespace FileFlow.Types
     public class CacheConfig
     {
         [JsonPropertyName("Files")]
+        [JsonInclude]
         public List<CacheFile> Files = new List<CacheFile>();
     }
     public class CacheFile
@@ -21,10 +22,13 @@ namespace FileFlow.Types
         private bool IsReadOnly = false;
 
         [JsonPropertyName("FileName")]
+        [JsonInclude]
         public string FileName { get { return _FileName; } set { if (IsReadOnly) { return; } _FileName = value; } }
         [JsonPropertyName("OriginalFileName")]
+        [JsonInclude]
         public string OriginalFileName { get { return _OriginalFileName; } set { if (IsReadOnly) { return; } _OriginalFileName = value; } }
         [JsonPropertyName("SavedAt")]
+        [JsonInclude]
         public DateTime SavedAt { get { return _SavedAt; } set { if (IsReadOnly) { return; } _SavedAt = value; } }
     }
 }
